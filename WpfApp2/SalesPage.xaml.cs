@@ -24,12 +24,16 @@ namespace WpfApp2
         {
             InitializeComponent();
             DataGrid1.ItemsSource = Connect.Context.Sales.ToList();//Обновить
-            foreach (var item in DataGrid1.Columns)
-            {
-                ComboBoxSort.Items.Add(item.Header.ToString());
-            }
+            SetComboBoxData(); //Заполняем ComboBoxSort
         }
-
+        private void SetComboBoxData()
+        {
+            ComboBoxSort.Items.Add("ID");
+            ComboBoxSort.Items.Add("Нименование");
+            ComboBoxSort.Items.Add("Цена");
+            ComboBoxSort.Items.Add("Колличество");
+            ComboBoxSort.Items.Add("Поставщик");
+        }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             Nav.Frame.Navigate(new AddEditPage(null)); //Открыть страницу добавления 
@@ -67,7 +71,26 @@ namespace WpfApp2
 
         private void ComboBoxSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataGrid1.ItemsSource = Connect.Context.Sales.OrderBy(x => x.Name).ToList();
+            switch (ComboBoxSort.SelectedIndex)
+            {
+                case 0:
+                    DataGrid1.ItemsSource = Connect.Context.Sales.OrderBy(x => x.ID).ToList();
+                    break;
+                case 1:
+                    DataGrid1.ItemsSource = Connect.Context.Sales.OrderBy(x => x.Name).ToList();
+                    break;
+                case 2:
+                    DataGrid1.ItemsSource = Connect.Context.Sales.OrderBy(x => x.Cast).ToList();
+                    break;
+                case 3:
+                    DataGrid1.ItemsSource = Connect.Context.Sales.OrderBy(x => x.Count).ToList();
+                    break;
+                case 4:
+                    DataGrid1.ItemsSource = Connect.Context.Sales.OrderBy(x => x.Postav).ToList();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
