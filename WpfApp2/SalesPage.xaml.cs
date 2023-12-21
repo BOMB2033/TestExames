@@ -54,5 +54,10 @@ namespace WpfApp2
             Connect.Context.SaveChanges();
             DataGrid1.ItemsSource = Connect.Context.Sales.ToList();
         }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            DataGrid1.ItemsSource = Connect.Context.Sales.Where(x => x.Name.Contains(textBoxSearch.Text)).ToList();
+        }
     }
 }
