@@ -45,5 +45,14 @@ namespace WpfApp2
         {
             DataGrid1.ItemsSource = Connect.Context.Sales.ToList();
         }
+
+        private void btnDelet_Click(object sender, RoutedEventArgs e)
+        {
+            var seletItems = DataGrid1.SelectedItems.Cast<Sales>().ToList();
+            if (MessageBox.Show($"Удалить {seletItems.Count} записей", "Удаление", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                Connect.Context.Sales.RemoveRange(seletItems);
+            Connect.Context.SaveChanges();
+            DataGrid1.ItemsSource = Connect.Context.Sales.ToList();
+        }
     }
 }
