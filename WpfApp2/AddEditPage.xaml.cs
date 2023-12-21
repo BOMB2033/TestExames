@@ -38,15 +38,15 @@ namespace WpfApp2
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (checkNew)
-                Connect.Context.Sales.Add(sales);
-            Connect.Context.SaveChanges();
-            Nav.Frame.GoBack();
+            if (checkNew)// Проверка на добавление или редактирование
+                Connect.Context.Sales.Add(sales);//Добавить запись
+            Connect.Context.SaveChanges();//Сохранить
+            Nav.Frame.GoBack();//Назад
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            Nav.Frame.GoBack();
+            Nav.Frame.GoBack(); //Назад
         }
     }
 }

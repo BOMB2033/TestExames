@@ -23,41 +23,42 @@ namespace WpfApp2
         public SalesPage()
         {
             InitializeComponent();
-            DataGrid1.ItemsSource = Connect.Context.Sales.ToList();
+            DataGrid1.ItemsSource = Connect.Context.Sales.ToList();//Обновить
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            Nav.Frame.Navigate(new AddEditPage(null));
+            Nav.Frame.Navigate(new AddEditPage(null)); //Открыть страницу добавления 
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            Nav.Frame.GoBack();
+            Nav.Frame.GoBack();//Назад
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            Nav.Frame.Navigate(new AddEditPage((Sales)DataGrid1.SelectedItem));
+            Nav.Frame.Navigate(new AddEditPage((Sales)DataGrid1.SelectedItem));//Открыть страницу редактирования 
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            DataGrid1.ItemsSource = Connect.Context.Sales.ToList();
+            DataGrid1.ItemsSource = Connect.Context.Sales.ToList(); //Обновить
         }
 
         private void btnDelet_Click(object sender, RoutedEventArgs e)
         {
-            var seletItems = DataGrid1.SelectedItems.Cast<Sales>().ToList();
-            if (MessageBox.Show($"Удалить {seletItems.Count} записей", "Удаление", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                Connect.Context.Sales.RemoveRange(seletItems);
-            Connect.Context.SaveChanges();
-            DataGrid1.ItemsSource = Connect.Context.Sales.ToList();
+//       Удаление
+            var seletItems = DataGrid1.SelectedItems.Cast<Sales>().ToList(); //Получение выделенных ячеек
+            if (MessageBox.Show($"Удалить {seletItems.Count} записей", "Удаление", MessageBoxButton.YesNo) == MessageBoxResult.Yes)//Запросное сообщение
+                Connect.Context.Sales.RemoveRange(seletItems);//Удалить массив
+            Connect.Context.SaveChanges();//Сохранить
+            DataGrid1.ItemsSource = Connect.Context.Sales.ToList();//Обновить
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            DataGrid1.ItemsSource = Connect.Context.Sales.Where(x => x.Name.Contains(textBoxSearch.Text)).ToList();
+            DataGrid1.ItemsSource = Connect.Context.Sales.Where(x => x.Name.Contains(textBoxSearch.Text)).ToList(); //Поиск
         }
     }
 }

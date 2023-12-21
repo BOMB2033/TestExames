@@ -9,6 +9,6 @@ namespace WpfApp2
 {
     internal class Nav
     {
-        public static Frame Frame;
+        public static Frame Frame; //Глаболизовать фрейм
     }
 }

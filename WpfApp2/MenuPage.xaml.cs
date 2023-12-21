@@ -26,12 +26,12 @@ namespace WpfApp2
         }
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            Environment.Exit(0);
+            Environment.Exit(0); ///Выход
         }
 
         private void btnTable_Click(object sender, RoutedEventArgs e)
         {
-            Nav.Frame.Navigate(new SalesPage());
+            Nav.Frame.Navigate(new SalesPage());//Открыть таблицу
         }
     }
 }
