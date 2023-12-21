@@ -24,6 +24,10 @@ namespace WpfApp2
         {
             InitializeComponent();
             DataGrid1.ItemsSource = Connect.Context.Sales.ToList();//Обновить
+            foreach (var item in DataGrid1.Columns)
+            {
+                ComboBoxSort.Items.Add(item.Header.ToString());
+            }
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -59,6 +63,11 @@ namespace WpfApp2
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             DataGrid1.ItemsSource = Connect.Context.Sales.Where(x => x.Name.Contains(textBoxSearch.Text)).ToList(); //Поиск
+        }
+
+        private void ComboBoxSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid1.ItemsSource = Connect.Context.Sales.OrderBy(x => x.Name).ToList();
         }
     }
 }
